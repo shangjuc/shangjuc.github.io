@@ -1,0 +1,7 @@
+@mixin clearfix {
+    &::after {
+        content: ""; //若不想到偽元素,則寫空集合
+        display: table;
+        clear: both;
+    }
+}

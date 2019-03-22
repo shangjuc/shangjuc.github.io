@@ -1,0 +1,45 @@
+.composition {
+    position: relative;
+
+    &__photo {
+        width: 40%;
+        box-shadow:0 1.5rem 4rem rgba($color-black, .4);
+        border-radius: 2px;
+        position: absolute;
+        transition: all 0.3s;
+        z-index: 10;
+        outline-offset: 1.5rem; //看不見的outline
+        
+        &--p1 {
+            left: 5%;
+            top: 0rem;
+        }
+
+        &--p2 {
+            left: 18%;
+            top: 5rem;
+        }
+
+        &--p3 {
+            left: 35%;
+            top: 20rem;
+        }
+
+        &--p4 {
+            left: 48%;
+            top: 25rem;
+        }
+
+        &:hover {
+            outline: 1rem solid rgba($color-primary, .8);
+            transform: scale(1.05) translateY(-0.5rem);
+            box-shadow: 0 1.5rem 4rem rgba($color-black, .5);
+            z-index: 20; //懸停時往上提
+        }
+    }
+
+    &:hover &__photo:not(:hover) {
+        transform: scale(.9);
+    }
+    //composition:hover composition__photo:not(:hover)
+}
