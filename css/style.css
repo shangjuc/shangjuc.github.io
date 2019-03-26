@@ -241,12 +241,33 @@ body {
       left: 48%;
       top: 25rem; }
     .composition__photo:hover {
-      outline: 1rem solid rgba(66, 145, 152, 0.8);
+      outline: 1rem solid rgba(66, 145, 152, 0.1);
       transform: scale(1.05) translateY(-0.5rem);
       box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.5);
       z-index: 20; }
   .composition:hover .composition__photo:not(:hover) {
     transform: scale(0.9); }
+
+.feature-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  transition: transform .3s; }
+  .feature-box__icon {
+    font-size: 5rem;
+    margin-bottom: .5rem;
+    display: inline-block;
+    background-image: linear-gradient(to right, #56bac4, #2b5b85);
+    -webkit-background-clip: text;
+    color: transparent; }
+  .feature-box:hover {
+    transform: translateY(-1.5rem) scale(1.03); }
+  .feature-box__text {
+    margin-top: 1.5rem;
+    font-size: 1.4rem; }
 
 .row {
   max-width: 114rem;
@@ -302,3 +323,13 @@ body {
   background-color: #f7f7f7;
   padding: 25rem 0;
   margin-top: -15vh; }
+
+.section-features {
+  margin-top: -15rem;
+  padding: 20rem 0;
+  background-image: linear-gradient(to right bottom, rgba(86, 186, 196, 0.8), rgba(43, 91, 133, 0.8)), url(../img/internet-second.jpg);
+  /* Photo by Markus Spiske on Unsplash */
+  background-size: cover;
+  transform: skewY(-3.5deg); }
+  .section-features > * {
+    transform: skewY(3.5deg); }

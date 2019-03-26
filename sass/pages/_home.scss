@@ -1,5 +1,27 @@
+//pages/_home.scss
+
 .section-about {
     background-color: $color-grey-light-1;
     padding: 25rem 0;
     margin-top: -15vh;
+}
+
+.section-features {
+    margin-top: -15rem;
+    padding: 20rem 0;
+    background-image: linear-gradient(
+        to right bottom, 
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8),
+        ), 
+        url(../img/internet-second.jpg);
+        /* Photo by Markus Spiske on Unsplash */
+        background-size: cover;
+
+        transform: skewY(-3.5deg);
+
+        & > * {
+            //.section-features * 
+            transform: skewY(3.5deg);
+        }
 }
