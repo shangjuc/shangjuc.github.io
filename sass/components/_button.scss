@@ -8,7 +8,7 @@
         padding: 1.5rem 4rem;
         display: inline-block;
         border-radius: 10rem; /* 圓角 */
-        letter-spacing: .5rem;
+        letter-spacing: 0rem;
         transition: all .2s;  /* 變形動畫 */
         position: relative; /* 相對於::after */
     }
@@ -34,6 +34,18 @@
 
         &::after {
             background-color: $color-white;
+            
+        }
+    
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary;
+            
         }
     
     }
@@ -67,6 +79,7 @@
         text-decoration: none;
         border-bottom: 1px solid $color-primary;
         padding: 3px;
+        transition: all .5s;
     }
 
     &:hover {

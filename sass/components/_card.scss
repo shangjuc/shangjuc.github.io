@@ -1,0 +1,180 @@
+//components/_card.scss
+
+.card {
+
+    // FUNCTIONALITY
+    
+    perspective: 150rem;
+    -moz-perspective: 150rem;
+    //增強翻頁的空間感
+    position: relative;
+    //當子元素被設為absolute時, 母元素通常要設為relative
+    height: 50rem;
+    //由於子元素設為absolute, 母元素的高度要設, 才能讓perspective呈現
+    
+    &__side {
+        color: $color-black;
+        font-size: 2rem;
+        transition: all .8s ease;
+        position: absolute;
+        //讓--front和--back都在同一個位置, 但可能會使.card的height=0,
+        top: 0;
+        left: 0;
+        height: 50rem;
+        width: 100%;
+        //避免front和back被縮短
+        backface-visibility: hidden;
+        //背面隱藏
+        border-radius: 3px;
+        overflow: hidden;
+        //搭配border-radius將照片溢出部分隱藏
+        border-radius: 5px;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+        &--front {
+            background-color: $color-white;
+        }
+        
+        &--back {
+            transform: rotateY(180deg);
+            //一開始已經是翻轉180度(背面)的狀態
+
+            &-1 {
+                background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark)
+            }
+
+            &-2 {
+                background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark)
+            }
+
+            &-3 {
+                background-image: linear-gradient(to right bottom, $color-quaternary-light, $color-quaternary-dark)
+            }
+        }
+    }
+
+    &:hover &__side--front {
+        //.card:hover .card__side
+        transform: rotateY(-180deg);
+        //負值能使front的翻轉方向和back相反
+    }
+
+    &:hover &__side--back {
+        //.card:hover .card__side
+        transform: rotateY(0deg);
+    }
+
+    // FRONT SIDE STYLING
+    &__picture {
+        background-size:cover;
+        height: 23rem;
+        background-blend-mode: screen;
+        //僅支援較新的browser(chrome,firefox,safari...)
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+
+        &--1 {
+            background-image:
+            linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark,), 
+            url(../img/net-1.jpg);
+            /* Photo by Thomas Kvistholt on Unsplash */
+
+        }
+
+        &--2 {
+            background-image: 
+            linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark,), 
+            url(../img/net-2.jpg);
+            /* Photo by Sai Kiran Anagani on Unsplash */
+        }
+
+        &--3 {
+            background-image: 
+            linear-gradient(to right bottom, $color-quaternary-light, $color-quaternary-dark,), 
+            url(../img/net-3.jpg);
+            /* Photo by Clem Onojeghuo on Unsplash */
+
+        }
+    }
+
+    &__heading {
+        font-size: 2rem;
+        font-weight:300;
+        text-transform: uppercase;
+        text-align: right;
+        color: $color-white;
+        position: absolute;
+        top:12rem;
+        right:2rem;
+        width: 75%;
+    }
+
+    &__heading-span {
+            padding: .5rem 1.5rem;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+
+        &--1 {
+            background-image: linear-gradient(to right bottom, rgba($color-secondary-light, .85), rgba($color-secondary-dark, .85));
+        }
+        &--2 {
+            background-image: linear-gradient(to right bottom, rgba($color-tertiary-light, .85), rgba($color-tertiary-dark, .85));
+        }
+        &--3 {
+            background-image: linear-gradient(to right bottom, rgba($color-quaternary-light, .85), rgba($color-quaternary-dark, .85));
+        }
+    }
+
+    &__details {
+        padding: 3rem;
+        //內縮
+        
+        ul {
+            list-style: none;
+            width: 80%;
+            margin: 0 auto;
+            //文字置中
+
+            li {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 1rem;
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid $color-grey-light-2;
+                }
+            }
+        }
+    }
+
+    //FRONT SIDE STYLING
+    &__cta {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        text-align: center;
+    }
+
+    &__download-box {
+        text-align: center;
+        color: $color-white;
+        margin-bottom: 8rem;
+
+    }
+
+    &__download-more {
+        font-size: 1.4rem;
+        text-transform: uppercase;
+    }
+
+    &__download-version {
+        margin-top: 2rem;
+        font-size: 2rem;
+        font-weight: 100;
+    }
+
+}

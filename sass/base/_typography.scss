@@ -68,6 +68,11 @@ body {
         transform: skewY(0.15deg) skewX(2deg) scale(1.05);
         text-shadow: .5rem 1rem 2rem rgba($color-black, .1);
     }
+
+    &--light {
+        background-image: linear-gradient(to right, $color-grey-light-2, $color-white);
+
+    }
 }
 
 .heading-tertiary {
