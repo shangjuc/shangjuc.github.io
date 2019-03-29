@@ -1,5 +1,5 @@
 .btn {
-
+    &,
     &:link,
     &:visited {
         /* text-transform: uppercase; */
@@ -11,6 +11,7 @@
         letter-spacing: 0rem;
         transition: all .2s;  /* 變形動畫 */
         position: relative; /* 相對於::after */
+
     }
 
     &:hover {
@@ -23,14 +24,16 @@
         }
     }
 
-    &:active {
+    &:active,
+    &:focus {
+        outline: none;
         transform: translateY(-1px);
         box-shadow: 0 .5rem 1rem rgba($color-black,.3);
     }
 
     &--white {
         background-color: $color-white;
-        color: $color-gray-dark;
+        color: $color-grey-dark;
 
         &::after {
             background-color: $color-white;
