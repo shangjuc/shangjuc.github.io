@@ -89,7 +89,7 @@ body {
   letter-spacing: .2rem;
   transition: all .2s; }
   .heading-secondary:hover {
-    transform: skewY(0.15deg) skewX(2deg) scale(1.05);
+    transform: skewY(0.15deg) skewX(3deg) scale(1.3);
     text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.1); }
   .heading-secondary--light {
     background-image: linear-gradient(to right, #eee, #fff); }
@@ -312,8 +312,8 @@ body {
 
 .composition__photo {
   width: 60%;
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
-  border-radius: 2px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
   transition: all 0.3s;
   z-index: 10;
   outline-offset: 1.5rem; }
@@ -342,7 +342,9 @@ body {
   text-align: center;
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
-  transition: transform .3s; }
+  transition: transform .3s;
+  height: 45rem;
+  position: relative; }
   .feature-box__icon {
     font-size: 5rem;
     margin-bottom: .5rem;
@@ -350,11 +352,33 @@ body {
     background-image: linear-gradient(to right, #8ae666, #2b8551);
     -webkit-background-clip: text;
     color: transparent; }
+  .feature-box__btn {
+    vertical-align: bottom;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%); }
   .feature-box:hover {
     transform: translateY(-1.5rem) scale(1.03); }
   .feature-box__text {
     margin-top: 1.5rem;
     font-size: 1.4rem; }
+
+.myinfo__intro > p {
+  border-left: 2px solid #999;
+  border-right: 2px solid #999; }
+
+.myinfo__pic > h3 {
+  transition: all .5s; }
+  .myinfo__pic > h3 > i {
+    font-size: 2.5rem; }
+  .myinfo__pic > h3:hover {
+    color: #68b466;
+    transform: scale(1.3) translateY(0.5rem); }
+
+.myinfo__exp > p {
+  border-left: 2px solid #999;
+  border-right: 2px solid #999; }
 
 .footer {
   background-color: #333;
