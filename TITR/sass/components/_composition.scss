@@ -1,18 +1,18 @@
 .composition {
-    // position: relative;
+    position: relative;
 
     &__photo {
-        width: 60%;
+        width: 40%;
         box-shadow:0 1.5rem 4rem rgba($color-black, .4);
         border-radius: 2px;
-        // position: absolute;
+        position: absolute;
         transition: all 0.3s;
         z-index: 10;
         outline-offset: 1.5rem; //看不見的outline
         
         &--p1 {
-            left: 15%;
-            top: 25rem;
+            left: 5%;
+            top: 0rem;
         }
 
         &--p2 {
@@ -25,6 +25,10 @@
             top: 0rem;
         }
 
+        &--p4 {
+            left: 68%;
+            top: 5rem;
+        }
 
         &:hover {
             outline: 1rem solid rgba($color-primary, .1);
