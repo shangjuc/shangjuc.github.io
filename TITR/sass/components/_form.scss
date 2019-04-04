@@ -1,4 +1,5 @@
 .form {
+    position: relative;
     &__group:not(:last-child) {
         margin-bottom: 2rem;
     }
@@ -33,8 +34,8 @@
     }
 
     &__paragraph {
-        font-size: 1.6rem;
-        margin-bottom: 1rem;
+        z-index: 8888;
+        font-size: 1.2rem;
     }
 
     &__label {

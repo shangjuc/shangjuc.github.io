@@ -12,7 +12,6 @@ $breakpoint arguement choices:
 - tab-land
 - big-desktop
 
-1em = 16px
 */
 @keyframes moveInLeft {
   0% {
@@ -713,14 +712,18 @@ body {
 
 .navigation__alert {
   position: fixed;
-  top: 50%;
-  left: 6rem;
+  opacity: .8;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  top: 0rem;
+  left: 50%;
   z-index: 9999;
   color: #fff;
   background-color: #F596AA;
-  width: 12rem;
-  transform: translate(0, -50%);
-  padding: 1rem;
+  width: 66rem;
+  transform: translate(-50%, 0);
+  padding: .5rem;
   font-weight: 300; }
 
 .navigation__checkbox {
