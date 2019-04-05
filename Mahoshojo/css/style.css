@@ -607,7 +607,7 @@ body {
 
 .footer {
   background-color: #333;
-  padding: 10rem 0;
+  padding: 5rem 0;
   font-size: 1.4rem; }
   .footer__logo-box {
     text-align: center;
@@ -627,8 +627,6 @@ body {
       margin-right: 1.5rem; }
   .footer__office {
     display: inline-block;
-    width: 40rem;
-    height: 20rem;
     margin-right: 1rem;
     vertical-align: top;
     color: #f7f7f7; }
