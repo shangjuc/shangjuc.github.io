@@ -15,6 +15,11 @@
         transform: translate(-50%, 0);
         padding: .5rem;
         font-weight: 300;
+
+        @include respond(phone) {
+            font-size: 0.9rem;
+
+        }
     }
 
     &__checkbox {
