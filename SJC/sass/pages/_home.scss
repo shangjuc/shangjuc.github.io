@@ -15,7 +15,11 @@
 .section-myWork {
     margin-top: 0;
     background-color: $color-grey-light-1;
-    background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+    // background-image: linear-gradient(
+    //     to right bottom, 
+    //     rgba($color-primary-light, 20%), 
+    //     rgba($color-primary-dark, 20%)
+    //     );
     padding: 0rem 0 10rem 0;
     
 }
