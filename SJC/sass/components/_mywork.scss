@@ -63,6 +63,7 @@
         top: 80%;
         left: 50%;
         transform: translateX(-50%);
+
         @include respond(tab-port) {
             top: 75%;
             font-size: 2.2rem !important;
