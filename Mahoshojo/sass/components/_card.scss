@@ -12,6 +12,8 @@
     height: 50rem;
     //由於子元素設為absolute, 母元素的高度要設, 才能讓perspective呈現
     
+
+
     &__side {
         color: $color-black;
         font-size: 2rem;
@@ -25,10 +27,9 @@
         //避免front和back被縮短
         backface-visibility: hidden;
         //背面隱藏
-        border-radius: 3px;
         overflow: hidden;
         //搭配border-radius將照片溢出部分隱藏
-        border-radius: 5px;
+        border-radius: 3px;
         box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
 
         &--front {
@@ -68,7 +69,7 @@
     &__picture {
         background-size:cover;
         height: 23rem;
-        background-blend-mode: hue;
+        background-blend-mode: screen;
         //僅支援較新的browser(chrome,firefox,safari...)
         -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
@@ -159,22 +160,82 @@
         text-align: center;
     }
 
-    &__download-box {
+    &__price-box {
         text-align: center;
         color: $color-white;
         margin-bottom: 8rem;
 
     }
 
-    &__download-more {
+    &__price-only {
         font-size: 1.4rem;
         text-transform: uppercase;
     }
 
-    &__download-version {
+    &__price-value {
         margin-top: 2rem;
         font-size: 2rem;
         font-weight: 100;
+    }
+
+
+
+
+
+
+
+    @include respond(tab-port) {
+        height: auto;
+        border-radius: 3px;
+        background-color: $color-white;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+        
+        &__side {
+            height: auto;
+            position: relative;
+            box-shadow: none;
+            
+            &--back {
+                transform: rotateY(0);
+                clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+            }
+        }
+    
+        &:hover &__side--front {
+            //.card:hover .card__side
+            transform: rotateY(0);
+        }
+    
+        &__details {
+            padding: 1rem 0 3rem 0;
+        }
+
+        //FRONT SIDE STYLING
+        &__cta {
+            position: relative;
+            top: 0%;
+            left: 0%;
+            transform: translate(0);
+            width: 100%;
+            padding: 7rem 4rem 0rem 4rem;
+        }
+        
+        &__price-box {
+            font-size: 3rem;
+            margin-top: -1rem;
+            margin-bottom: 3rem;
+    
+        }
+    
+        &__price-only {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+        }
+    
+        &__price-value {
+            font-size: 4rem;
+        }
+
     }
 
 }

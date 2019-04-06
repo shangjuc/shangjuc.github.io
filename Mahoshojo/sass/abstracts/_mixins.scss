@@ -30,6 +30,8 @@ $breakpoint arguement choices:
 - tab-land
 - big-desktop
 
+ORDER: Base + typography > general layout + grid > page layout > components
+
 */
 
 @mixin respond($breakpoint) {
