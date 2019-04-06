@@ -5,9 +5,19 @@
     
     &:not(:last-child) {
         margin-bottom: $gutter-vertical;
+
+        @include respond(tab-port) {
+            margin-bottom: $gutter-vertical-small;
+        }
     }
     //Everything..., except the last child.
     //.row:last-child()
+
+    @include respond(tab-port) {
+        max-width: 50rem;
+        padding: 0 3rem;
+    }
+
 
     @include clearfix;
     //套用mixin, 消除上方宣告;
@@ -17,9 +27,21 @@
     
         &:not(:last-child) {
             margin-right: $gutter-horizontal;
+            //除了最後, 其他都要加右邊界
+            //.row::after {}
+        
+            @include respond(tab-port) {
+                margin-right: 0;
+                margin-bottom: $gutter-vertical-small;
+            }
         }
-        //除了最後, 其他都要加右邊界
-        //.row::after {}
+
+        
+        @include respond(tab-port) {
+            width: 100% !important;
+        }
+
+
     }
 
     .col-1-of-2 {
