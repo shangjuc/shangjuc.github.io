@@ -61,7 +61,7 @@ body {
       margin-top: 2rem; } }
   .heading-primary--main {
     display: block;
-    font-size: 7rem;
+    font-size: 6rem;
     font-weight: 400;
     letter-spacing: 2rem;
     animation-name: moveInLeft;
@@ -71,10 +71,13 @@ body {
         animation-delay: 3s;
         animation-iteration-count: 3;
         */ }
+    @media (max-width: 75em) {
+      .heading-primary--main {
+        font-size: 5.5rem; } }
     @media (max-width: 56.25em) {
       .heading-primary--main {
         letter-spacing: 1rem;
-        font-size: 6rem; } }
+        font-size: 5rem; } }
   .heading-primary--sub {
     display: block;
     font-size: 3rem;

@@ -16,6 +16,7 @@ body {
     backface-visibility: hidden;
     margin-bottom: 2rem;
 
+
     @include respond(tab-port) {
         margin-top: 3rem;
     }
@@ -25,7 +26,7 @@ body {
 
     &--main {
         display: block;
-        font-size: 7rem;
+        font-size: 6rem;
         font-weight: 400;
         letter-spacing: 2rem;
     
@@ -33,10 +34,13 @@ body {
         animation-duration: 1s;
         animation-timing-function: ease-out;
 
-        
+        @include respond(tab-land) {
+            font-size: 5.5rem;
+        }
+            
         @include respond(tab-port) {
             letter-spacing: 1rem;
-            font-size: 6rem; 
+            font-size: 5rem; 
         }
     
         /*
