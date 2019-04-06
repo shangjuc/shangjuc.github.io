@@ -267,7 +267,7 @@ body {
   font-size: 1.6rem; }
   @media (max-width: 56.25em) {
     .myInfo__paragraph {
-      font-size: 2.3rem; } }
+      font-size: 2.1rem; } }
 
 .myInfo__link:link, .myInfo__link:visited {
   color: #999;
@@ -325,7 +325,7 @@ body {
         padding: 1rem; }
         @media (max-width: 56.25em) {
           .myWork__details ul li {
-            font-size: 2.3rem; } }
+            font-size: 2rem; } }
         .myWork__details ul li:not(:last-child) {
           border-bottom: 1px solid #eee; }
   .myWork__btn {
@@ -347,7 +347,8 @@ body {
 .footer {
   background-color: #333;
   padding: 2rem 0 2rem 0;
-  font-size: 1.4rem; }
+  font-size: 1.4rem;
+  color: #f7f7f7; }
   @media (max-width: 56.25em) {
     .footer {
       padding: 2.5rem 0;
@@ -384,7 +385,6 @@ body {
     color: #f7f7f7;
     background-color: #333;
     text-decoration: none;
-    text-transform: uppercase;
     display: inline-block;
     transition: all .2s; }
   .footer__link:hover, .footer__link:active {
@@ -395,7 +395,7 @@ body {
     color: #f7f7f7;
     font-size: 2rem; }
   .footer__copyright {
-    color: #999; }
+    color: #f7f7f7; }
     @media (max-width: 56.25em) {
       .footer__copyright {
         width: 100%;

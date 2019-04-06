@@ -2,6 +2,7 @@
     background-color: $color-grey-dark-3;
     padding: 2rem 0 2rem 0;
     font-size: 1.4rem;
+    color: $color-grey-light-1;
 
     @include respond(tab-port) {
         padding: 2.5rem 0;
@@ -67,7 +68,7 @@
             color: $color-grey-light-1;
             background-color: $color-grey-dark-3;
             text-decoration: none;
-            text-transform: uppercase;
+            // text-transform: uppercase;
             display: inline-block;
             transition: all .2s;
         }
@@ -87,7 +88,7 @@
 
     &__copyright {
 
-        color: $color-grey-dark-2;
+        color: $color-grey-light-1;
         // padding-top: 2rem;
 
         
