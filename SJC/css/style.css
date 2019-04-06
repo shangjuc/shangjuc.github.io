@@ -73,7 +73,7 @@ body {
         */ }
     @media (max-width: 75em) {
       .heading-primary--main {
-        font-size: 5.5rem; } }
+        font-size: 5rem; } }
     @media (max-width: 56.25em) {
       .heading-primary--main {
         letter-spacing: 1rem;
