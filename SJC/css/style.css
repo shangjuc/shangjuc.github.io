@@ -267,7 +267,7 @@ body {
   font-size: 1.6rem; }
   @media (max-width: 56.25em) {
     .myInfo__paragraph {
-      font-size: 2.5rem; } }
+      font-size: 2.3rem; } }
 
 .myInfo__link:link, .myInfo__link:visited {
   color: #999;
@@ -278,6 +278,7 @@ body {
   color: #68b466; }
 
 .myInfo__pic {
+  margin-top: 4rem;
   width: 60%;
   transition: all .4s;
   border-radius: 3px; }
@@ -297,8 +298,8 @@ body {
   position: relative; }
   @media (max-width: 56.25em) {
     .myWork {
-      height: 45rem;
-      padding: 2rem; } }
+      height: 50rem;
+      padding: 2rem 0; } }
   .myWork__icon {
     font-size: 5rem;
     margin-bottom: .5rem;
@@ -310,18 +311,21 @@ body {
       .myWork__icon {
         margin-bottom: 0; } }
   .myWork__details {
-    padding: 2rem; }
+    padding: 2rem 0; }
     .myWork__details ul {
       list-style: none;
       width: 80%;
       margin: 0 auto; }
+      @media (max-width: 56.25em) {
+        .myWork__details ul {
+          width: 90%; } }
       .myWork__details ul li {
         text-align: center;
         font-size: 1.5rem;
         padding: 1rem; }
         @media (max-width: 56.25em) {
           .myWork__details ul li {
-            font-size: 2.5rem; } }
+            font-size: 2.3rem; } }
         .myWork__details ul li:not(:last-child) {
           border-bottom: 1px solid #eee; }
   .myWork__btn {
@@ -332,8 +336,8 @@ body {
     transform: translateX(-50%); }
     @media (max-width: 56.25em) {
       .myWork__btn {
-        top: 75%;
-        font-size: 2.2rem !important; } }
+        top: 80%;
+        font-size: 2.3rem !important; } }
   .myWork:hover {
     transform: translateY(-1.5rem) scale(1.03); }
   .myWork__text {
