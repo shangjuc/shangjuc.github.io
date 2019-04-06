@@ -680,12 +680,12 @@ body {
     hyphens: auto; }
     @media (max-width: 56.25em) {
       .popup__text {
-        font-size: .5rem;
+        font-size: 1rem;
         -moz-column-count: 1;
         column-count: 1; } }
     @media (max-width: 37.5em) {
       .popup__text {
-        font-size: .2rem;
+        font-size: .8rem;
         -moz-column-count: 1;
         column-count: 1; } }
 
