@@ -28,7 +28,7 @@ body {
         display: block;
         font-size: 6rem;
         font-weight: 400;
-        letter-spacing: 2rem;
+        letter-spacing: 1rem;
     
         animation-name: moveInLeft;
         animation-duration: 1s;
@@ -53,8 +53,9 @@ body {
         display: block;
         font-size: 3rem;
         font-weight: 400;
-        letter-spacing: 0.6rem;
+        letter-spacing: 1.6rem;
         word-spacing: 1.4rem;
+
     
         animation: moveInRight 1s ease-out;
 
