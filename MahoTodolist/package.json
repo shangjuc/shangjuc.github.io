@@ -1,0 +1,17 @@
+{
+  "name": "mahotodolist",
+  "version": "1.0.0",
+  "description": "Maho Todo List",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SJChen",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "node-sass": "^4.11.0",
+    "sass": "^1.17.4"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,88 @@
+h1 {
+    background: #2980b9;
+    color: white;
+    margin: 0;
+    padding: 10px 20px;
+    text-transform: uppercase; /* 全大寫 */
+    font-size: 24px;
+    font-weight: normal;
+}
+
+body {
+    background: #005AA7;  
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFDE4, #005AA7);  
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFDE4, #005AA7); 
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'Noto Sans TC', sans-serif;
+    
+}
+
+ul {
+    list-style: none; /* 把bullet points去掉 */
+    margin: 0;
+    padding: 0;
+}
+
+.fa-edit {
+    float: right;
+}
+
+
+
+li {
+    background: #fff;
+    height: 40px;  /* li的高度 */
+    line-height: 40px; /* 行高(縱向置中) */
+    color: #666;
+}
+
+li:nth-child(2n) {  /* 每隔一行 */
+    background: #f7f7f7;
+}
+
+span {
+    background: #e74c3c;
+    height: 40px;
+    margin-right: 20px;
+    text-align: center;
+    color: white; /* ICON的顏色 */
+    width: 0px;
+    display: inline-block; 
+    transition: 0.2s linear;
+    opacity: 0;
+}
+
+li:hover span {
+    width: 40px;
+    opacity: 1.0;
+}
+
+input {
+    font-size: 18px;
+    color: #2980b9;  /* 輸入字顏色和h1背景色相同 */
+    background-color: #f7f7f7;
+    width: 100%; /* 輸入框和li一樣寬 */
+    padding: 13px 13px 13px 20px;
+    box-sizing: border-box;  /* 使width為邊界之間的寬度 */
+    border: 3px solid rgba(0,0,0, 0); /* 讓內框線看不見 */
+}
+
+input:focus {  /* 輸入文字的狀態 */
+    background: #fff;
+    border: 3px solid #2980b9;
+    outline: none;
+}
+
+#container {
+    width: 360px;
+    margin: 100px auto;  /* 上下100px, 橫向置中 */
+    background: #f7f7f7; /* 背景色 */
+    box-shadow: 0 0 3px rgba(0,0,0, 0.1); /* x y br rgba */
+}
+
+.completed {
+    color: gray;
+    text-decoration: line-through;
+}

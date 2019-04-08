@@ -1,0 +1,14 @@
+{
+  "name": "mahoshojo",
+  "version": "1.0.0",
+  "description": "Mahoshojo Recruitment Center",
+  "main": "index.js",
+  "scripts": {
+    "compile:mrc": "node-sass sass/main.scss css/style.css -w"
+  },
+  "author": "SJ Chen",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^4.11.0"
+  }
+}
