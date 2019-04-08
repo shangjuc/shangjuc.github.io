@@ -9,9 +9,9 @@
   "author": "SJChen",
   "license": "ISC",
   "dependencies": {
-    "jquery": "^3.3.1",
-    "node-sass": "^4.11.0",
-    "sass": "^1.17.4"
+    "jquery": "^3.3.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "node-sass": "^4.11.0"
+  }
 }

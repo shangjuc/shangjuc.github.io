@@ -8,7 +8,8 @@
   },
   "author": "SJ Chen",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "node-sass": "^4.11.0"
   }
 }
