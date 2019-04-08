@@ -1,0 +1,20 @@
+{
+  "name": "shangjuc",
+  "version": "1.0.0",
+  "description": "sjc demo\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[\u001b[C\u001bhangjuc demo",
+  "main": "index.js",
+  "scripts": {
+    "compile:sjc": "node-sass SJC/sass/main.scss SJC/css/style.css -w",
+    "compile:titr": "node-sass TITR/sass/main.scss TITR/css/style.css -w",
+    "compile:mrc": "node-sass MRC/sass/main.scss MRC/css/style.css -w",
+    "compile:mtl": "node-sass MTL/sass/main.scss MTL/css/style.css -w"
+  },
+  "author": "SJ Chen",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.11.0"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}
