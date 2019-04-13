@@ -67,18 +67,6 @@ d3.json("taiwan.json", function(error, topology) {
     //設定邊界寬度
     .attr('stroke-width', "1")
     
-    
-    // //設定滑鼠移入時的區塊顏色
-    // .on("mouseover", function(d) {
-    //     d3.select(this).attr("fill", "#fff");
-    // })
-    
-    // //設定滑鼠移出後的區塊顏色
-    // .on("mouseleave", function(d) {
-    //     d3.select(this).attr("fill", "lightgreen");
-    // });
-
-
 
 
     //用jQuery顯示滑鼠所指向的行政區
@@ -131,62 +119,3 @@ d3.json("taiwan.json", function(error, topology) {
     });
     
 });
-
-
-
-// //在地圖上標記城市的點
-// var g = svg.append("g");
-    
-// //讀取同資料夾下的cities.csv
-// d3.csv("cities.csv", function(error, data) {
-//     g.selectAll("circle")
-//     .data(data)
-//     .enter()
-//     .append("circle")
-//     .attr("cx", function(d) {
-//         return projection([d.lon, d.lat])[0];
-//     })
-//     .attr("cy", function(d) {
-//         return projection([d.lon, d.lat])[1];
-//     })
-
-//     //設定城市的半徑
-//     .attr("r", 15)
-    
-//     //設定城市的顏色
-//     .style("fill", "blue");
-// });
-
-//讀取同資料夾下的cities2.csv
-
-// setInterval(function() {
-//     d3.csv("cities2.csv", function(error, data) {
-//         svg.select("g").selectAll("circle").remove();
-        
-//         // new data joins old elements 'circle'
-//         var update = svg.append("g").selectAll("circle")
-//             .data(data)
-//             .enter()
-//             .append("circle")
-//             .attr("cx", function(d) {
-//                 return projection([d.lon, d.lat])[0];
-//             })
-//             .attr("cy", function(d) {
-//                     return projection([d.lon, d.lat])[1];
-//             })
-//             .attr("r", 5)
-
-//             //設定城市的顏色
-//             .style("fill", "red");
-//     });
-// }, 2000);
-
-
-//
-
-
-
-
-
-
-

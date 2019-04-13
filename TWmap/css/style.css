@@ -15,6 +15,15 @@ body {
     stroke-linejoin: round;
 }
 
+.mapInfo {
+    color: white;
+}
+
+.mapInfo__link {
+    color: white;
+    text-decoration: none;
+}
+
 #panel {
     position: absolute;
     z-index: 999;
