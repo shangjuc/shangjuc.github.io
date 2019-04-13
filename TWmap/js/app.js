@@ -41,13 +41,20 @@ d3.json("taiwan.json", function(error, topology) {
     .append("path")
     .attr("d", path)
     
+    //匯入行政區名稱/代碼/ID
     .attr({
         d: path,
-        name: function(d) {
+        countyName: function(d) {
             return d.properties["COUNTYNAME"];
         },
-        nameENG: function(d) {
+        countyEng: function(d) {
             return d.properties["COUNTYENG"];
+        },
+        countyCode: function(d) {
+            return d.properties["COUNTYCODE"];
+        },
+        countyID: function(d) {
+            return d.properties["COUNTYID"];
         },
         
         //設定區塊顏色
@@ -95,7 +102,7 @@ d3.json("taiwan.json", function(error, topology) {
 
     //滑鼠移入時顯示行政區名稱
     $("path").mouseenter(function(e) {
-        $('#title').html($(this).attr("name"));
+        $('#countyName--s').html($(this).attr("countyName"));
         
         $('#panel').css({
             'top' : e.pageY,
@@ -113,14 +120,14 @@ d3.json("taiwan.json", function(error, topology) {
 
     //滑鼠點擊後顯示panel--big
     $("path").mousedown(function() {
-        $('#title--big').html($(this).attr("name"));
-        $('#title--eng').html($(this).attr("nameENG"));
-        $('#panel--big').fadeIn();
-        $('#panel--big').css({
-            'top' : '50%',
-            'left' : '50%',
+        $('.countyInfo').css({
             'opacity' : '100'
         });
+        $('#countyName').html($(this).attr("countyName"));
+        $('#countyEng').html($(this).attr("countyEng"));
+        $('#countyCode').html($(this).attr("countyCode"));
+        $('#countyID').html($(this).attr("countyID"));
+
     });
     
 });
