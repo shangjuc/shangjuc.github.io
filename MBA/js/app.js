@@ -5,6 +5,19 @@ var budgetController = (function() {
         this.id = id;
         this.description = description;
         this.value = value;
+        this.percentage = -1;
+    };
+
+    Expense.prototype.calcPercentage = function(totalIncome){
+        if (totalIncome > 0) {
+            this.percentage = Math.round((this.value / totalIncome) * 100);
+        } else {
+            this.percentage = -1;
+        }
+    };
+
+    Expense.prototype.getPercentage = function() {
+        return this. percentage;
     };
 
     var Income = function (id, description, value) {
@@ -78,7 +91,7 @@ var budgetController = (function() {
             // data.allItems[type][id];
             // ids = [1 2 4 6 8]
             //index = 3
-            
+            // console.log(data.allItems[type]);
             ids = data.allItems[type].map(function(current) {
                 return current.id;
             });
@@ -109,8 +122,32 @@ var budgetController = (function() {
                 data.percentage = -1;
             }
 
-            // expense = 100 and income = 200; spent = 50%
+            // if expense = 100 and income = 200; spent = 50%
 
+        },
+
+        calculatePercentages: function() {
+
+            /* 
+            a = 20;
+            b = 10;
+            c = 40;
+            income = 100;
+            a% = 20/100 = 20%;
+            */
+
+            data.allItems.exp.forEach(function(cur){
+                cur.calcPercentage(data.totals.inc);
+                // current.calcdPercentage();
+            })
+
+        },
+
+        getPercentage: function() {
+            var allPerc = data.allItems.exp.map(function(cur) {
+                return cur.getPercentage();
+            });
+            return allPerc;
         },
 
         getBudget: function() {
@@ -146,8 +183,41 @@ var UIController = (function() {
         incomeLabel: '.budget__income--value',
         expensesLabel: '.budget__expenses--value',
         percentageLabel: '.budget__expenses--percentage',
-        container: '.container'
+        container: '.container',
+        expensPercLabel: '.item__percentage',
+        dataLabel: '.budget__title--month'
     };
+
+    var formatNumber = function(num, type) {
+        var numSplit, int, dec;
+        /*
+          ex. 1234.567  -->  + 1,234.57
+          ex. 2000      -->  + 2,000.00
+        */
+
+        num = Math.abs(num); // 轉為正值
+        num = num.toFixed(2); // 強制表示小數後兩位(四捨五入)且轉為字串
+
+        numSplit = num.split('.');
+
+        int = numSplit[0]; //整數部分
+        if (int.length > 3) {
+            int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3) // input 1234, output 1,234
+        }
+
+        dec = numSplit[1]; //小數點後的部分
+
+        // type === 'exp' ? sign = '-' : sign = '+'; // 如果是exp就顯示'-'；否則'+'
+        // return type + ' ' + int + dec;
+        return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + dec;
+    };
+
+    var nodeListForEach = function (list, callback) {
+        for (i = 0; i < list.length; i++) {
+            callback(list[i], i);
+        }
+    };
+
 
     return {
         getInput: function() {
@@ -174,10 +244,17 @@ var UIController = (function() {
             // Replace the placeholder text with some actual data
             newHtml = html.replace('%id%', obj.id);
             newHtml = newHtml.replace('%description%', obj.description);
-            newHtml = newHtml.replace('%value%', obj.value);
+            newHtml = newHtml.replace('%value%', formatNumber(obj.value, type));
 
             // Insert the HTML into the DOM
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+
+        },
+
+        deleteListItem: function(selectorID) {
+            
+            var el = document.getElementById(selectorID);
+            el.parentNode.removeChild(el);
 
         },
 
@@ -197,10 +274,12 @@ var UIController = (function() {
         },
 
         displayBudget: function(obj) {
+            var type;
+            obj.budget > 0 ? type = 'inc' : type = 'exp';
 
-            document.querySelector(DOMstrings.budgetLabel).textContent = obj.budget;
-            document.querySelector(DOMstrings.incomeLabel).textContent = obj.totalInc;
-            document.querySelector(DOMstrings.expensesLabel).textContent = obj.totalExp;
+            document.querySelector(DOMstrings.budgetLabel).textContent = formatNumber(obj.budget, type);
+            document.querySelector(DOMstrings.incomeLabel).textContent = formatNumber(obj.totalInc, 'inc');
+            document.querySelector(DOMstrings.expensesLabel).textContent = formatNumber(obj.totalExp, 'exp');
             document.querySelector(DOMstrings.percentageLabel).textContent = obj.percentageLabel;
             
             if (obj.percentage > 0) {
@@ -208,6 +287,47 @@ var UIController = (function() {
             } else {
                 document.querySelector(DOMstrings.percentageLabel).textContent = '---';
             }
+        },
+
+        displayPercentages: function(percentages) {
+            
+            var fields = document.querySelectorAll(DOMstrings.expensPercLabel);
+
+
+            nodeListForEach(fields, function(current, index){
+
+                if (percentages[index] > 0) {
+                    current.textContent = percentages[index] + '%';
+                } else {
+                    current.textContent = '---';
+                }
+            });
+
+        },
+
+        displayMonth: function() {
+            var now, year, months, month;
+            now = new Date();
+            // var christmas = new Date(2019, 12, 25);
+
+            months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+            month = now.getMonth();
+            year = now.getFullYear();
+            document.querySelector(DOMstrings.dataLabel).textContent = year + '年' + months[month];
+        },
+
+        changedType: function(){
+            var fields = document.querySelectorAll(
+                DOMstrings.inputType + ',' + 
+                DOMstrings.inputDescription + ',' + 
+                DOMstrings.inputValue
+            );
+
+            nodeListForEach(fields, function(cur) {  //記得把nodeListForEach提到閉包外以供這裡取用
+                cur.classList.toggle('red-focus');
+            });
+
+            document.querySelector(DOMstrings.inputBtn).classList.toggle('red');
         },
 
         getDOMstrings: function() {
@@ -236,7 +356,11 @@ var controller = (function(budgetCtrl, UICtrl) {
 
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
 
+        document.querySelector(DOM.inputType).addEventListener('change', UICtrl.changedType);
+
     };
+
+
 
     var updateBudget = function() {
 
@@ -248,6 +372,20 @@ var controller = (function(budgetCtrl, UICtrl) {
 
         // 3. 將budget展示在UI
         UICtrl.displayBudget(budget);
+
+    };
+
+    var updatePercentages = function() {
+
+        // 1. 計算percentages
+        budgetCtrl.calculatePercentages();
+
+        // 2. Read percentages from the budget controller
+        var percentages = budgetCtrl.getPercentage();
+
+        // 3. Update the UI with the new percentages
+        // console.log(percentages);
+        UICtrl.displayPercentages(percentages);
 
     };
 
@@ -274,7 +412,9 @@ var controller = (function(budgetCtrl, UICtrl) {
             
             // 5. 計算並update budget
             updateBudget();
-            
+
+            // 6. 計算且更新percentages
+            updatePercentages();
         }
     };
 
@@ -288,15 +428,24 @@ var controller = (function(budgetCtrl, UICtrl) {
 
             // income-1
             splitID = itemID.split('-');
-            type = splitID[0];
+            // console.log(splitID[0]);
+            type = splitID[0].substring(0,3); //取 "income"/"expend" 的首三字 "inc"/"exp"
+
             ID = parseInt(splitID[1]); // from string to number(interger)
 
             // 1. delete the item from the data structure
             budgetCtrl.deleteItem(type, ID);
 
             // 2. delete the item from the UI
+            UICtrl.deleteListItem(itemID);
 
             // 3. update and show the new budget
+            updateBudget();
+
+            // 4. 計算且更新percentages
+            updatePercentages();
+
+
         }
 
     };
@@ -304,6 +453,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     return {
         init: function() {
             console.log('App has started.');
+            UICtrl.displayMonth();
             UICtrl.displayBudget({
                 budget: 0,
                 totalInc: 0,
