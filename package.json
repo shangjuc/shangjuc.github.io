@@ -12,7 +12,7 @@
   "author": "SJ Chen",
   "license": "ISC",
   "devDependencies": {
-    "node-sass": "^4.11.0"
+    "node-sass": "^4.13.1"
   },
   "dependencies": {
     "jquery": "^3.3.1",
