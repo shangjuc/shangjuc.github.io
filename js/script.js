@@ -129,6 +129,10 @@
     stopMobileNavAnim();
   });
 
+  // document.querySelector("#main-nav-toggle").addEventListener("click", function(){
+  //   console.log("hello")
+  // })
+
   $('#wrap').on('click', function(){
     if (isMobileNavAnim || !$container.hasClass('mobile-nav-on')) return;
 

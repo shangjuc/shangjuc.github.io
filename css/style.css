@@ -193,7 +193,12 @@ body {
   background: #fff;
 }
 .mobile-nav-on #wrap {
-  left: 280px;
+  left: 0px;
+}
+@media screen and (max-width: 768px) {
+  .mobile-nav-on #wrap {
+    left: 280px;
+  }
 }
 @media screen and (min-width: 768px) {
   #main {
@@ -479,6 +484,7 @@ body {
 }
 #main-nav-toggle {
   display: none;
+  z-index: 1000;
 }
 #main-nav-toggle:before {
   content: "\f0c9";
@@ -1412,8 +1418,12 @@ pre .keyword,
 pre .javascript .function {
   color: #c9c;
 }
-@media screen and (max-width: 479px) {
+#mobile-nav {
+  display: none;
+}
+@media screen and (max-width: 768px) {
   #mobile-nav {
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
@@ -1423,7 +1433,7 @@ pre .javascript .function {
     border-right: 1px solid #fff;
   }
 }
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 768px) {
   .mobile-nav-link {
     display: block;
     color: #999;
