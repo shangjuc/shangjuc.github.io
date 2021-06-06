@@ -5,11 +5,11 @@
   
 
   
-  <title>Tag: Angular | Shang&#39;s DevNotes</title>
+  <title>Category: JavaScript | Shang&#39;s DevNotes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Shang&#39;s DevNotes">
-<meta property="og:url" content="https://shangjuc.github.io/tags/Angular/index.html">
+<meta property="og:url" content="https://shangjuc.github.io/categories/Frontend/JavaScript/index.html">
 <meta property="og:site_name" content="Shang&#39;s DevNotes">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:author" content="SJC">
@@ -149,6 +149,70 @@
           <a href="/archives/2021" class="archive-year">2021</a>
         </div>
         <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/Hexo/Hexo_basic/" class="archive-article-date">
+  <time datetime="2021-06-03T16:00:00.000Z" itemprop="datePublished">2021-06</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/Hexo/Hexo_basic/">Hexo Basic</a>
+    </h1>
+  
+
+    </header>
+    <div class="archive-article-content">
+      <h1><span id="hexo-tochelper-錯誤及其修正">Hexo TocHelper 錯誤及其修正</span></h1><h2><span id="問題">問題</span></h2><p>Hexo的TocHelper生成的目錄，其中的連結無法導向文章的標題，是出了什麼問題?</p>
+<p>首先我們去看那個元素，發現這個a缺少了href。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;toc-link&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;toc-text&quot;</span>&gt;</span>Using Firebase via CDN<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2><span id="解決">解決</span></h2><p>首先，我們搜尋toc這個關鍵字，在node_modules\hexo\lib\plugins\helper\toc.js找到function <code>tocHelper</code> ，就是我們要修正的目標。</p>
+<p>可以看到，a.toc-link的href若無，則會生成沒有href的a</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (href) &#123;</span><br><span class="line">    result += <span class="string">`&lt;a class=&quot;<span class="subst">$&#123;className&#125;</span>-link&quot; href=&quot;<span class="subst">$&#123;href&#125;</span>&quot;&gt;`</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    result += <span class="string">`&lt;a class=&quot;<span class="subst">$&#123;className&#125;</span>-link&quot;&gt;`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>從這裡可以知道，href是由id作成的，而id是來自於el，el則是data的item</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, len = data.length; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> el = data[i];</span><br><span class="line">    <span class="keyword">const</span> &#123; level, id, text &#125; = el;</span><br><span class="line">    <span class="keyword">const</span> href = id ? <span class="string">`#<span class="subst">$&#123;encodeURL(id)&#125;</span>`</span> : <span class="literal">null</span>;</span><br><span class="line"> 	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我們試著把<code>data</code> Print出來，注意，不是在瀏覽器，而是在你的node terminal。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(data)</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, len = data.length; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> el = data[i];</span><br><span class="line">    <span class="keyword">const</span> &#123; level, id, text &#125; = el;</span><br><span class="line">    <span class="keyword">const</span> href = id ? <span class="string">`#<span class="subst">$&#123;encodeURL(id)&#125;</span>`</span> : <span class="literal">null</span>;</span><br><span class="line"> 	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在for之前的data是長這樣的，可以發現，id是 <code>&quot;&quot;</code>，也就是空白字串，而text則是我們可以拿來用的東西</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123; <span class="attr">text</span>: <span class="string">&#x27;使用Firebase&#x27;</span>, <span class="attr">id</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">level</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">text</span>: <span class="string">&#x27;前言&#x27;</span>, <span class="attr">id</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">level</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">text</span>: <span class="string">&#x27;安裝&#x27;</span>, <span class="attr">id</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">level</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">text</span>: <span class="string">&#x27;Using Firebase via CDN&#x27;</span>, <span class="attr">id</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">level</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">text</span>: <span class="string">&#x27;Using Firebase via NPM&#x27;</span>, <span class="attr">id</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">level</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">text</span>: <span class="string">&#x27;實作&#x27;</span>, <span class="attr">id</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">level</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">text</span>: <span class="string">&#x27;在Angular使用Firebase&#x27;</span>, <span class="attr">id</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">level</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">text</span>: <span class="string">&#x27;自訂FirebaseAuth介面&#x27;</span>, <span class="attr">id</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">level</span>: <span class="number">2</span> &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在hexo html的id生成時，若遇到空格，會自動加上<code>-</code>，然後變成小寫。例如 <code>&#39;Using Firebase via CDN&#39;</code> 這個文字要轉成id，會變成 <code>using-firebase-via-cdn</code>，我們就依照這個原則去寫一個方程式將text轉成可用的id。</p>
+<p>在下方，我寫了一個 <code>encodedText</code> function去修正text，生出來的id就是符合上述規範，要把它改成href的話，只要在前面加上 <code>#</code> 即可。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, len = data.length; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> encodedText = <span class="function"><span class="keyword">function</span>(<span class="params">txt</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">let</span> new_txt = <span class="built_in">String</span>(txt).toLowerCase().replace(<span class="regexp">/ /g</span>, <span class="string">&quot;-&quot;</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(new_txt)</span><br><span class="line">      <span class="keyword">return</span> new_txt;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> el = data[i];</span><br><span class="line">    <span class="keyword">const</span> &#123; level, id, text &#125; = el;</span><br><span class="line">    <span class="comment">// const href = id ? `#$&#123;encodeURL(id)&#125;` : null;</span></span><br><span class="line">    <span class="keyword">const</span> href = text ? <span class="string">`#<span class="subst">$&#123;encodedText(text)&#125;</span>`</span> : <span class="literal">null</span>;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以下是成功修正後的a</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;toc-link&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#using-firebase-via-cdn&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;toc-text&quot;</span>&gt;</span>Using Firebase via CDN<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>問題解決。</p>
+
+    </div>
+    
+    <div class="archive-article-open">
+      
+        <a href="/Hexo/Hexo_basic/">
+          閱讀全文
+        </a>
+      
+    </div>
+
+  </div>
+</article>
+  
+    
     
     <article class="archive-article archive-type-post">
   <div class="archive-article-inner">
@@ -407,113 +471,41 @@
   
     
     
+      
+        </div></section>
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
     <article class="archive-article archive-type-post">
   <div class="archive-article-inner">
     <header class="archive-article-header">
-      <a href="/TailwindCSS/TailwindCSS_basic/" class="archive-article-date">
-  <time datetime="2021-02-03T16:00:00.000Z" itemprop="datePublished">2021-02</time>
+      <a href="/AngularJS/AngularJS&Webpack/" class="archive-article-date">
+  <time datetime="2019-09-10T16:00:00.000Z" itemprop="datePublished">2019-09</time>
 </a>
       
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/TailwindCSS/TailwindCSS_basic/">TailwindCSS Basic</a>
+      <a class="archive-article-title" href="/AngularJS/AngularJS&Webpack/">AngularJS與Webpack</a>
     </h1>
   
 
     </header>
     <div class="archive-article-content">
-      <p>官方文件: <a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/installation">https://tailwindcss.com/docs/installation</a></p>
-<h2><span id="using-tailwind-via-npm">Using Tailwind via NPM</span></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install tailwindcss@latest postcss@latest autoprefixer@latest</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx tailwindcss init</span><br></pre></td></tr></table></figure>
-
-
-
-<p>./tailwind.config.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// tailwind.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  purge: &#123;</span><br><span class="line">    <span class="comment">// enabled: true,</span></span><br><span class="line">    content: [</span><br><span class="line">      <span class="string">&#x27;./src/**/*.html&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;./src/**/*.ts&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;./projects/**/*.html&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;./projects/**/*.ts&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>其中的purge，要把檢查的html,ts都加入，讓tailwindcss在壓縮時可以檢查。開發時先把enable設為false(預設也是false)，等到發佈產品前再做全面檢測及壓縮，大約可以把tailwind.css從3.7MB壓縮至10KB。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">purge: &#123;</span><br><span class="line">    <span class="comment">// enabled: true,</span></span><br><span class="line">    content: [</span><br><span class="line">      <span class="string">&#x27;./src/**/*.html&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;./src/**/*.ts&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;./projects/**/*.html&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;./projects/**/*.ts&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-
-
-
-<p>將tailwind.css建立在 <code>./src/assets/</code> 下，才能夠直接被Angular引用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx tailwindcss-cli@latest build -o ./src/assets/tailwind.css</span><br></pre></td></tr></table></figure>
-
-
-
-<p>./src/index.html</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;assets/tailwind.css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>./package.json</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;ng&quot;: &quot;ng&quot;,</span><br><span class="line">    &quot;start&quot;: &quot;ng serve&quot;,</span><br><span class="line">    &quot;tw_start&quot;: &quot;npm run build_tailwind_dev &amp;&amp; ng serve&quot;,</span><br><span class="line">    &quot;ats&quot;: &quot;angular-http-server -p 9000 --path ./dist&quot;,</span><br><span class="line">    &quot;ls&quot;: &quot;cd ./dist &amp;&amp; live-server --port=9000 --entry-file=./index.html&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;ng build --prod &amp;&amp; npm run build_tailwind_prod&quot;,</span><br><span class="line">    &quot;build_ls&quot;: &quot;npm run build &amp;&amp; npm run ls&quot;,</span><br><span class="line">    &quot;build_deploy&quot;: &quot;ng build --prod --deploy-url /static/dist/ &amp;&amp; npm run build_tailwind_prod&quot;,</span><br><span class="line">    &quot;test&quot;: &quot;ng test&quot;,</span><br><span class="line">    &quot;lint&quot;: &quot;ng lint&quot;,</span><br><span class="line">    &quot;e2e&quot;: &quot;ng e2e&quot;,</span><br><span class="line">    &quot;build_tailwind_prod&quot;: &quot;npx tailwindcss-cli@latest build ./src/tailwind_src.css -c ./tailwind_pro.config.js -o ./dist/assets/css/tailwind.css&quot;,</span><br><span class="line">    &quot;build_tailwind_dev&quot;: &quot;npx tailwindcss-cli@latest build ./src/tailwind_src.css -c ./tailwind_dev.config.js -o ./src/assets/css/tailwind.css&quot;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2><span id="自訂tailwindconfigjs">自訂tailwind.config.js</span></h2><p>自訂顏色:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  theme: &#123;</span><br><span class="line">    extend: &#123;</span><br><span class="line">      colors: &#123;</span><br><span class="line">        transparent: <span class="string">&#x27;transparent&#x27;</span>,</span><br><span class="line">        current: <span class="string">&#x27;currentColor&#x27;</span>,</span><br><span class="line">        indigo: &#123;</span><br><span class="line">          light: <span class="string">&#x27;#211EAD&#x27;</span>,</span><br><span class="line">          DEFAULT: <span class="string">&#x27;#21156D&#x27;</span>,</span><br><span class="line">          dark: <span class="string">&#x27;#21156D&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        green: &#123;</span><br><span class="line">          light: <span class="string">&#x27;#2EC5CE&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>開啟DarkMode:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// darkMode: false, // or &#x27;media&#x27; or &#x27;class&#x27;</span></span><br><span class="line">  darkMode: <span class="string">&#x27;class&#x27;</span>, <span class="comment">// or &#x27;media&#x27; or &#x27;class&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npx tailwindcss-cli@latest build ./src/tailwind.css -c ./tailwind_pro.config.js -o ./dist/tailw </span><br><span class="line">ind.css</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2><span id="使用不同的tailwind_xxxconfigjs">使用不同的tailwind_XXX.config.js</span></h2><p>在tailwind.config.js之外，我們再建立2個config檔，分別取名為 <code>tailwind_dev.config.js </code>及 <code>tailwind_pro.config.js</code> ，作為開發版及產品版所使用的config檔。</p>
-<p>首先最重要的差異在於要不要啟用 <code>purge</code> 功能，在開發時，我們會使用到新的utility-class，因此若啟用purge功能，會造成開發上的麻煩，很多utility-class都會被清掉而無作用。相對地，在產品版中，我們希望tailwind.css的檔案愈小愈好。</p>
-<p>以目前使用到的功能(含暗黑模式)，未壓縮的tailwind.css約為5.7MB，壓縮後的tailwind.css則為14KB，檔案大小相差極巨。</p>
-<p>開發版的config:  <code>./tailwind_dev.config.js</code> </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  purge: &#123;</span><br><span class="line">    <span class="comment">// enabled: true,</span></span><br><span class="line">    content: [</span><br><span class="line">      <span class="string">&#x27;./src/**/*.html&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;./src/**/*.ts&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;./projects/**/*.html&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;./projects/**/*.ts&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-
-<p>產品版的config:  <code>./tailwind_pro.config.js</code> </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  purge: &#123;</span><br><span class="line">    enabled: <span class="literal">true</span>,</span><br><span class="line">    content: [</span><br><span class="line">      <span class="string">&#x27;./src/**/*.html&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;./src/**/*.ts&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;./projects/**/*.html&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;./projects/**/*.ts&#x27;</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-
-
-
-<p>以上兩者的主要差異在於 <code>enabled: true</code> 這行，若是comment的狀態，則預設是關閉的。</p>
-<h2><span id="修改packagejson腳本">修改package.json腳本</span></h2><p>在package.json中，我們新增一個腳本叫做protw，負責編譯產品版的tailwind.css:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;protw&quot;: &quot;npx tailwindcss-cli@latest build ./src/tailwind_src.css -c ./tailwind_pro.config.js -o ./dist/account-manager/assets/tailwind.css&quot;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>這段指令是用npx建置dist的tailwind.css的指令。指令分解如下::</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">動作: npx tailwindcss-cli@latest build</span><br><span class="line">來源檔:  .&#x2F;src&#x2F;tailwind_src.css</span><br><span class="line">使用的config: -c .&#x2F;tailwind_pro.config.js</span><br><span class="line">目的檔: -o .&#x2F;dist&#x2F;account-manager&#x2F;assets&#x2F;tailwind.css</span><br></pre></td></tr></table></figure>
-
-
-
-<p>回到package.json中，我們將build腳本加上 <code>&amp;&amp; npm run protw</code> :</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;build&quot;: &quot;ng build &amp;&amp; npm run protw&quot;,</span><br></pre></td></tr></table></figure>
-
-<p>其中的<code>ng build</code>是Angular建置dist版本的指令，而<code>npm run protw</code>是編譯產品版的tailwind.css，這樣就可以用<code>npm run build</code> 同時完成產品版的建置。</p>
-<p>回到package.json中，我們新增一個腳本叫做devtw，負責編譯開發版的tailwind.css:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;devtw&quot;: &quot;npx tailwindcss-cli@latest build ./src/tailwind_src.css -c ./tailwind.config.js -o ./src/assets/tailwind.css&quot;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">動作: npx tailwindcss-cli@latest build</span><br><span class="line">來源檔:  .&#x2F;src&#x2F;tailwind_src.css</span><br><span class="line">使用的config: -c .&#x2F;tailwind_dev.config.js</span><br><span class="line">目的檔: -o .&#x2F;src&#x2F;assets&#x2F;tailwind.css</span><br></pre></td></tr></table></figure>
-
-
-
-<p>修改後的package.json腳本如下:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;ng&quot;: &quot;ng&quot;,</span><br><span class="line">    &quot;start&quot;: &quot;ng serve&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;ng build &amp;&amp; npm run protw&quot;,</span><br><span class="line">    &quot;test&quot;: &quot;ng test&quot;,</span><br><span class="line">    &quot;lint&quot;: &quot;ng lint&quot;,</span><br><span class="line">    &quot;e2e&quot;: &quot;ng e2e&quot;,</span><br><span class="line">    &quot;protw&quot;: &quot;npx tailwindcss-cli@latest build ./src/tailwind_src.css -c ./tailwind_pro.config.js -o ./dist/account-manager/assets/tailwind.css&quot;,</span><br><span class="line">    &quot;devtw&quot;: &quot;npx tailwindcss-cli@latest build ./src/tailwind_src.css -c ./tailwind.config.js -o ./src/assets/tailwind.css&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
+      <h1><span id="引入webpack整合開發環境">引入Webpack整合開發環境</span></h1><p>當AngularJS專案日益複雜，各component所使用的lib版本可能不一致(例如d3的v3,v4,v5)，使用webpack可以避免全域變數被汙染，也可以對程式碼進行壓縮。</p>
+<p>此外，將首頁中的script檔，由index.js統一管理，也可以避免因載入速度差異導致的undefined錯誤。</p>
+<p>除了將js檔陸續移至index.js整合，也同時使用sass-loader，將原本的sass指令整合至webpack.config.js中。</p>
+<p>需注意的是，webpack在整合js時，全域變數在瀏覽器中不再能單純的使用 <code>var xxx</code> 或 <code>function xxx</code> 來定義，而須轉變成 <code>window.xxx</code>。</p>
 
     </div>
     
     <div class="archive-article-open">
       
-        <a href="/TailwindCSS/TailwindCSS_basic/">
+        <a href="/AngularJS/AngularJS&Webpack/">
           閱讀全文
         </a>
       

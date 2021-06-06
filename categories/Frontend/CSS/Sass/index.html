@@ -5,11 +5,11 @@
   
 
   
-  <title>Archives: 2019/7 | Shang&#39;s DevNotes</title>
+  <title>Category: Sass | Shang&#39;s DevNotes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Shang&#39;s DevNotes">
-<meta property="og:url" content="https://shangjuc.github.io/archives/2019/07/index.html">
+<meta property="og:url" content="https://shangjuc.github.io/categories/Frontend/CSS/Sass/index.html">
 <meta property="og:site_name" content="Shang&#39;s DevNotes">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:author" content="SJC">
@@ -232,6 +232,48 @@
     <div class="archive-article-open">
       
         <a href="/Sass/Sass_basic/">
+          閱讀全文
+        </a>
+      
+    </div>
+
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/Sass/Sass&WordPress/" class="archive-article-date">
+  <time datetime="2019-05-27T16:00:00.000Z" itemprop="datePublished">2019-05</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/Sass/Sass&WordPress/">Sass 與 WordPress</a>
+    </h1>
+  
+
+    </header>
+    <div class="archive-article-content">
+      <h2><span id="使用scss修改樣式">使用SCSS修改樣式</span></h2><p>首先是用NPM安裝node-sass，再撰寫腳本指定覆蓋原本的style.css</p>
+<p>../package.json</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;scss&quot;: &quot;node-sass wordpress/wp-content/themes/sydney/scss/main.scss wordpress/wp-content/themes/sydney/style.css -w&quot;,</span><br><span class="line">    </span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<p>將原本的style.css改名為 _styleWP.scss，利用main.scss匯入後，再利用css權重去加入客製化樣式，如此一來就可以在舊有樣式上進行修改。</p>
+<p>./scss/main.scss</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">&quot;abstracts/mixin&quot;</span>;</span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;abstracts/variables&quot;</span>;</span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;abstracts/utility&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;base/base&quot;</span>;</span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;base/styleWP&quot;</span>;</span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;base/typography&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;components/archives&quot;</span>;</span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;components/article&quot;</span>;</span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;components/button&quot;</span>;</span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;components/categories&quot;</span>;</span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;components/navbar&quot;</span>;</span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;components/search&quot;</span>;</span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;components/footer&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@import</span> <span class="string">&quot;layout/home&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+    
+    <div class="archive-article-open">
+      
+        <a href="/Sass/Sass&WordPress/">
           閱讀全文
         </a>
       
