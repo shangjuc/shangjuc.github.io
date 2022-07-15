@@ -5,20 +5,18 @@
   
 
   
-  <title>AngularJS與Webpack | Shang&#39;s DevNotes</title>
+  <title>Webpack 與 Pug | Shang&#39;s DevNotes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="引入Webpack整合開發環境當AngularJS專案日益複雜，各component所使用的lib版本可能不一致(例如d3的v3,v4,v5)，使用webpack可以避免全域變數被汙染，也可以對程式碼進行壓縮。 此外，將首頁中的script檔，由index.js統一管理，也可以避免因載入速度差異導致的undefined錯誤。 除了將js檔陸續移至index.js整合，也同時使用sass-loade">
-<meta property="og:type" content="article">
-<meta property="og:title" content="AngularJS與Webpack">
-<meta property="og:url" content="https://shangjuc.github.io/AngularJS/AngularJS&Webpack/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Webpack 與 Pug">
+<meta property="og:url" content="https://shangjuc.github.io/Webpack/Webpack&Pug/index.html">
 <meta property="og:site_name" content="Shang&#39;s DevNotes">
-<meta property="og:description" content="引入Webpack整合開發環境當AngularJS專案日益複雜，各component所使用的lib版本可能不一致(例如d3的v3,v4,v5)，使用webpack可以避免全域變數被汙染，也可以對程式碼進行壓縮。 此外，將首頁中的script檔，由index.js統一管理，也可以避免因載入速度差異導致的undefined錯誤。 除了將js檔陸續移至index.js整合，也同時使用sass-loade">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2019-09-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-27T16:00:00.000Z">
+<meta property="article:published_time" content="2019-07-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-23T16:00:00.000Z">
 <meta property="article:author" content="SJC">
-<meta property="article:tag" content="AngularJS">
 <meta property="article:tag" content="Webpack">
+<meta property="article:tag" content="Pug">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Shang&#39;s DevNotes" type="application/atom+xml">
@@ -143,18 +141,18 @@
 </aside>
         
         <section id="main"><div class="article-meta">
-  <a href="/AngularJS/AngularJS&Webpack/" class="article-date">
-  <time datetime="2019-09-10T16:00:00.000Z" itemprop="datePublished">2019-09-11</time>
+  <a href="/Webpack/Webpack&Pug/" class="article-date">
+  <time datetime="2019-07-11T16:00:00.000Z" itemprop="datePublished">2019-07-12</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Frontend/">Frontend</a>►<a class="article-category-link" href="/categories/Frontend/JavaScript/">JavaScript</a>►<a class="article-category-link" href="/categories/Frontend/JavaScript/AngularJS/">AngularJS</a>
+    <a class="article-category-link" href="/categories/Frontend/">Frontend</a>►<a class="article-category-link" href="/categories/Frontend/Build-Tool/">Build-Tool</a>►<a class="article-category-link" href="/categories/Frontend/Build-Tool/Webpack/">Webpack</a>
   </div>
 
 </div>
 
 <div class="article-container">
-  <article id="post-AngularJS/AngularJS&amp;Webpack" class="article article-type-post" itemscope itemprop="blogPost">
+  <article id="post-Webpack/Webpack&amp;Pug" class="article article-type-post" itemscope itemprop="blogPost">
     
   
     <div class="article-inner">
@@ -164,7 +162,7 @@
           
   
     <h1 class="article-title" itemprop="name">
-      AngularJS與Webpack
+      Webpack 與 Pug
     </h1>
   
 
@@ -172,18 +170,14 @@
       
       <div class="article-entry" itemprop="articleBody">
         
-          <h1><span id="引入webpack整合開發環境">引入Webpack整合開發環境</span></h1><p>當AngularJS專案日益複雜，各component所使用的lib版本可能不一致(例如d3的v3,v4,v5)，使用webpack可以避免全域變數被汙染，也可以對程式碼進行壓縮。</p>
-<p>此外，將首頁中的script檔，由index.js統一管理，也可以避免因載入速度差異導致的undefined錯誤。</p>
-<p>除了將js檔陸續移至index.js整合，也同時使用sass-loader，將原本的sass指令整合至webpack.config.js中。</p>
-<p>需注意的是，webpack在整合js時，全域變數在瀏覽器中不再能單純的使用 <code>var xxx</code> 或 <code>function xxx</code> 來定義，而須轉變成 <code>window.xxx</code>。</p>
-
+          
         
       </div>
       <footer class="article-footer">
-        <a data-url="https://shangjuc.github.io/AngularJS/AngularJS&Webpack/" data-id="cl5lvfaqa0005g09n94tobwve" class="article-share-link">Share</a>
+        <a data-url="https://shangjuc.github.io/Webpack/Webpack&Pug/" data-id="cl5lvfar0000hg09nflwb7a0y" class="article-share-link">Share</a>
         
         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJS/" rel="tag">AngularJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webpack/" rel="tag">Webpack</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pug/" rel="tag">Pug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webpack/" rel="tag">Webpack</a></li></ul>
 
       </footer>
     </div>
@@ -191,26 +185,26 @@
 
   <div class="article-toc">
     <h3 class="toc-title">目錄</h3>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#引入webpack整合開發環境"><span class="toc-number">1.</span> <span class="toc-text">引入Webpack整合開發環境</span></a></li></ol>
+    
   </div>
 </div>
 
   
 <nav id="article-nav">
   
-    <a href="/Webpack/Webpack_basic/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/AngularJS/AngularJS&Webpack/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Webpack Basic
+          AngularJS與Webpack
         
       </div>
     </a>
   
   
-    <a href="/Webpack/Webpack&Pug/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/Sass/Sass_basic/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Webpack 與 Pug</div>
+      <div class="article-nav-title">Sass Basic</div>
     </a>
   
 </nav>
